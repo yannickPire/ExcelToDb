@@ -32,16 +32,18 @@ public class ExcelReader {
 				Row row = rowIterator.next();
 
 				Iterator<Cell> cellIterator = row.iterator();
-
-				User user = new User();
-				user.setName(row.getCell(0).getStringCellValue());
-				user.setSalary((int) row.getCell(1).getNumericCellValue());
-				user.setAccount(row.getCell(2).getStringCellValue());
-				resultUsers.add(user);
+				if (row.getRowNum() != 0) {
+					User user = new User();
+					user.setName(row.getCell(0).getStringCellValue());
+					user.setSalary((int) row.getCell(1).getNumericCellValue());
+					user.setAccount(row.getCell(2).getStringCellValue());
+					resultUsers.add(user);
+				}
+				
 			}
 
 			file.close();
-			FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Yannick\\Desktop\\test.xls"));
+			FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Yannick.Pire\\Desktop\\test.xls"));
 			workbook.write(out);
 			out.close();
 		} catch (IOException e) {
