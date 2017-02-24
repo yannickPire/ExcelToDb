@@ -17,10 +17,12 @@ import com.axa.models.User;
 
 public class ExcelReader {
 
-	public static List<User> readExcel(FileInputStream file) {
+	public static List<User> readExcel(String location) {
 
+		
 		List<User> resultUsers = new ArrayList<User>();
 		try {
+			FileInputStream file = new FileInputStream(new File(location));
 			// Get the workbook instance
 			HSSFWorkbook workbook = new HSSFWorkbook(file);
 			// Get the first sheet from the workbook
@@ -43,7 +45,7 @@ public class ExcelReader {
 			}
 
 			file.close();
-			FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Yannick.Pire\\Desktop\\test.xls"));
+			FileOutputStream out = new FileOutputStream(new File(location));
 			workbook.write(out);
 			out.close();
 		} catch (IOException e) {

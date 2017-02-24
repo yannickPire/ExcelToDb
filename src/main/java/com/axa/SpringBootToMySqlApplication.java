@@ -27,9 +27,9 @@ public class SpringBootToMySqlApplication {
 	@Bean
 	public CommandLineRunner demo(UserRepository repository) {
 		return (args) -> {
-			FileInputStream file = new FileInputStream(new File("C:\\Users\\Yannick\\Desktop\\test.xls"));
+			
 
-			List<User> users = ExcelReader.readExcel(file);
+			List<User> users = ExcelReader.readExcel("C:\\Users\\Yannick.Pire\\Desktop\\test.xls");
 			for(User user : users){
 				repository.save(user);
 			}
